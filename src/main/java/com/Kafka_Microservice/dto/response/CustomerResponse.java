@@ -1,17 +1,9 @@
-package com.Kafka_Microservice.entity;
+package com.Kafka_Microservice.dto.response;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "customers")
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int custId;
+public class CustomerResponse {
+    private int custId;
     private String name;
-
     private String email;
-
     private String address;
 
     public int getCustId() {

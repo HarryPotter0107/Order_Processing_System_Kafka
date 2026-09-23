@@ -1,5 +1,7 @@
 package com.Kafka_Microservice.entity;
 
+import com.Kafka_Microservice.enums.OrderStatus;
+import com.Kafka_Microservice.enums.PaymentStatus;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,6 +9,7 @@ import jakarta.persistence.*;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int odrId;
     private String productName;
 
     private Integer quantity;
@@ -15,11 +18,23 @@ public class Order {
 
     private String deliveryAddress;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
+
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus paymentStatus;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
+
+    public int getOdrId() {
+        return odrId;
+    }
+
+    public void setOdrId(int odrId) {
+        this.odrId = odrId;
+    }
 
     public String getProductName() {
         return productName;
@@ -53,12 +68,20 @@ public class Order {
         this.deliveryAddress = deliveryAddress;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+    public PaymentStatus getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 
     public Customer getCustomer() {
