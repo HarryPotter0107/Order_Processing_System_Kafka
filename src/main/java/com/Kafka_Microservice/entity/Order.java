@@ -11,23 +11,17 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int odrId;
     private String productName;
-
+    private int productId;
     private Integer quantity;
-
     private Double amount;
-
     private String deliveryAddress;
-
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
-
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
-
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-
     public int getOdrId() {
         return odrId;
     }
@@ -42,6 +36,14 @@ public class Order {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public Integer getQuantity() {
